@@ -1,0 +1,21 @@
+pkgname="quick-lint-js-bin"
+pkgver="2.6.0"
+pkgrel="1"
+pkgdesc="Find bugs in JavaScript programs"
+arch=(x86_64 amd64)
+url="https://quick-lint-js.com/"
+license=(Apache Boost GPL3)
+depends=(gcc-libs hicolor-icon-theme)
+provides=(quick-lint-js)
+conflicts=(quick-lint-js-git quick-lint-js)
+source=(
+  "${pkgname}-${pkgver}.tar.gz::https://c.quick-lint-js.com/releases/${pkgver}/manual/linux.tar.gz"
+)
+sha512sums=("be21f2a3a043ec5f934e6e3d80d752eebcfbe3b62be0a399f3cbd4bfc34123260af7c1b5a7628629fa65fa9f01505815794f2cbfd4bc86149f0d45c9e19c7cf4")
+
+package() {
+  mkdir -p "${pkgdir}/usr/bin"
+
+  cp "${srcdir}/quick-lint-js/bin/quick-lint-js" "${pkgdir}/usr/bin/quick-lint-js"
+  cp -r "${srcdir}/quick-lint-js/share" "${pkgdir}/usr/share"
+}
